@@ -1,0 +1,23 @@
+## for PRODCTION environment
+export TF_VAR_aws_XX_prd_access_key="XXX"
+export TF_VAR_aws_XX_prd_secret_key="XXX"
+export TF_VAR_aws_XX_prd_region="XXX"
+export TF_VAR_aws_XX_prd_role_arn="XXX"
+export TF_VAR_aws_XX_prd_bastion_key_name="/dev/null"
+export TF_VAR_aws_XX_prd_batch_key_name="/dev/null"
+
+## for DEVELOP environment
+export TF_VAR_aws_XX_dev_access_key="XXX"
+export TF_VAR_aws_XX_dev_secret_key="XXX"
+export TF_VAR_aws_XX_dev_region="XXX"
+export TF_VAR_aws_XX_dev_role_arn="xxx"
+export TF_VAR_aws_XX_dev_bastion_key_name="/dev/null"
+export TF_VAR_aws_XX_dev_batch_key_name="/dev/null"
+
+# for ALL environment
+export TF_VAR_ssh_office_cidr="nnn.nnn.nnn.nnn/nn"
+export TF_VAR_ssh_bastion_A_cidr="nnn.nnn.nnn.nnn/nn"
+export TF_VAR_ssh_bastion_B_cidr="nnn.nnn.nnn.nnn/nn"
+export TF_VAR_ssh_office_cidr_name="Office network"
+export TF_VAR_ssh_bastion_A_cidr_name="Bastion host A"
+export TF_VAR_ssh_bastion_B_cidr_name="Bastion host B"
