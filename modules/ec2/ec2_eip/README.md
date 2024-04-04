@@ -1,12 +1,15 @@
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.7.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.20.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.20.0 |
 
 ## Modules
 
@@ -30,7 +33,8 @@ No modules.
 | <a name="input_eip_id"></a> [eip\_id](#input\_eip\_id) | EIP\_id for created public EC2. | `string` | n/a | yes |
 | <a name="input_eip_public_ip"></a> [eip\_public\_ip](#input\_eip\_public\_ip) | Public IP address of EIP for created public EC2. | `string` | n/a | yes |
 | <a name="input_env"></a> [env](#input\_env) | environment type{prd\|stg\|dev}. (set in ./vars.tfvar) | `string` | n/a | yes |
-| <a name="input_key_name"></a> [key\_name](#input\_key\_name) | SSH public key filepath for created EC2. | `string` | n/a | yes |
+| <a name="input_key_file"></a> [key\_file](#input\_key\_file) | SSH public key filepath for created EC2. | `string` | n/a | yes |
+| <a name="input_key_name"></a> [key\_name](#input\_key\_name) | SSH public key name for created EC2. | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | item\_name | `string` | n/a | yes |
 | <a name="input_private_ip"></a> [private\_ip](#input\_private\_ip) | Private IP address for created public EC2. | `string` | n/a | yes |
 | <a name="input_proj"></a> [proj](#input\_proj) | project name | `string` | n/a | yes |
