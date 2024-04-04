@@ -43,7 +43,7 @@ data "aws_ami" "azlinux" {
 
 resource "aws_key_pair" "pub_key" {
   key_name   = var.key_name
-  public_key = file(var.key_name)
+  public_key = file(var.key_file)
 }
 
 resource "aws_network_interface" "EC2_NIC" {
@@ -57,9 +57,9 @@ resource "aws_network_interface" "EC2_NIC" {
 }
 
 resource "aws_instance" "EC2" {
-  ami                    = data.aws_ami.azlinux.id
-  instance_type          = "t4g.nano"
-  key_name = aws_key_pair.pub_key.key_name
+  ami           = data.aws_ami.azlinux.id
+  instance_type = "t4g.nano"
+  key_name      = aws_key_pair.pub_key.key_name
   network_interface {
     network_interface_id = aws_network_interface.EC2_NIC.id
     device_index         = 0
@@ -72,12 +72,12 @@ resource "aws_instance" "EC2" {
   }
 
   tags = {
-    Name = "${var.proj}-${var.env}-${var.name}-EC2_${var.az}"
+    Name      = "${var.proj}-${var.env}-${var.name}-EC2_${var.az}"
     terraform = true
   }
 }
 
-resource "aws_eip_association" eip-association {
+resource "aws_eip_association" "eip-association" {
   instance_id   = aws_instance.EC2.id
   allocation_id = var.eip_id
 }

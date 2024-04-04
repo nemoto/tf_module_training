@@ -29,31 +29,31 @@ module "create_VPC" {
 module "create_IGW" {
   source = "../../modules/igw/"
 
-  env      = local.env
-  proj     = local.proj
-  name     = "test"
-  vpc_id   = module.create_VPC.vpc_id
+  env    = local.env
+  proj   = local.proj
+  name   = "test"
+  vpc_id = module.create_VPC.vpc_id
 }
 
 module "create_EIP_for_NAT_A" {
   source = "../../modules/eip/"
 
-  env      = local.env
-  proj     = local.proj
-  name     = "test_subnet_A_NAT"
+  env  = local.env
+  proj = local.proj
+  name = "test_subnet_A_NAT"
 }
 
 module "create_subnet_A" {
   source = "../../modules/subnet/"
 
-  env      = local.env
-  proj     = local.proj
-  name     = "test"
-  az       = "A"
-  vpc_id   = module.create_VPC.vpc_id
-  eip_id   = module.create_EIP_for_NAT_A.eip_id
-  igw_id   = module.create_IGW.igw_id
-  subnet_az = "ap-northeast-1a"
+  env                             = local.env
+  proj                            = local.proj
+  name                            = "test"
+  az                              = "A"
+  vpc_id                          = module.create_VPC.vpc_id
+  eip_id                          = module.create_EIP_for_NAT_A.eip_id
+  igw_id                          = module.create_IGW.igw_id
+  subnet_az                       = "ap-northeast-1a"
   subnet_private_cidr_for_public  = "10.0.0.0/24"
   subnet_private_cidr_for_private = "10.0.1.0/24"
 }
@@ -61,22 +61,22 @@ module "create_subnet_A" {
 module "create_EIP_for_NAT_C" {
   source = "../../modules/eip/"
 
-  env      = local.env
-  proj     = local.proj
-  name     = "test_subnet_NAT"
+  env  = local.env
+  proj = local.proj
+  name = "test_subnet_NAT"
 }
 
 module "create_subnet_C" {
   source = "../../modules/subnet/"
 
-  env      = local.env
-  proj     = local.proj
-  name     = "test"
-  az       = "C"
-  vpc_id   = module.create_VPC.vpc_id
-  eip_id   = module.create_EIP_for_NAT_C.eip_id
-  igw_id   = module.create_IGW.igw_id
-  subnet_az = "ap-northeast-1c"
+  env                             = local.env
+  proj                            = local.proj
+  name                            = "test"
+  az                              = "C"
+  vpc_id                          = module.create_VPC.vpc_id
+  eip_id                          = module.create_EIP_for_NAT_C.eip_id
+  igw_id                          = module.create_IGW.igw_id
+  subnet_az                       = "ap-northeast-1c"
   subnet_private_cidr_for_public  = "10.0.2.0/24"
   subnet_private_cidr_for_private = "10.0.3.0/24"
 }
@@ -85,10 +85,10 @@ module "create_subnet_C" {
 
 module "create_SG_bastion_server" {
   source = "../../modules/sg/"
-  env      = local.env
-  proj     = local.proj
-  name     = "bastion"
-  vpc_id   = module.create_VPC.vpc_id
+  env    = local.env
+  proj   = local.proj
+  name   = "bastion"
+  vpc_id = module.create_VPC.vpc_id
 }
 
 module "create_SG_rules_ssh_for_bastion" {
@@ -108,9 +108,9 @@ module "create_SG_rules_ssh_for_bastion" {
 module "create_EIP_for_EC2_bastion" {
   source = "../../modules/eip/"
 
-  env      = local.env
-  proj     = local.proj
-  name     = "bation_EIP"
+  env  = local.env
+  proj = local.proj
+  name = "bation_EIP"
 }
 
 module "create_EC2_bastion" {
@@ -122,6 +122,7 @@ module "create_EC2_bastion" {
   az            = "A"
   private_ip    = "10.0.0.10"
   key_name      = local.key_name_bastion
+  key_file      = local.public_key_file_bastion
   eip_id        = module.create_EIP_for_EC2_bastion.eip_id
   eip_public_ip = module.create_EIP_for_EC2_bastion.eip_public_ip
   subnet_id     = module.create_subnet_A.public_subnet_id
@@ -132,10 +133,10 @@ module "create_EC2_bastion" {
 
 module "create_SG_batch_server" {
   source = "../../modules/sg/"
-  env      = local.env
-  proj     = local.proj
-  name     = "batch"
-  vpc_id   = module.create_VPC.vpc_id
+  env    = local.env
+  proj   = local.proj
+  name   = "batch"
+  vpc_id = module.create_VPC.vpc_id
 }
 
 module "create_SG_rules_ssh_for_batch" {
@@ -147,12 +148,13 @@ module "create_SG_rules_ssh_for_batch" {
 module "create_EC2_batch" {
   source = "../../modules/ec2/ec2_private/"
 
-  env       = local.env
-  proj      = local.proj
-  name      = "batch"
-  az        = "A"
+  env        = local.env
+  proj       = local.proj
+  name       = "batch"
+  az         = "A"
   private_ip = "10.0.1.10"
-  key_name  = local.key_name_batch
-  subnet_id = module.create_subnet_A.private_subnet_id
-  sg_id     = module.create_SG_batch_server.sg_id
+  key_name   = local.key_name_batch
+  key_file   = local.public_key_file_batch
+  subnet_id  = module.create_subnet_A.private_subnet_id
+  sg_id      = module.create_SG_batch_server.sg_id
 }

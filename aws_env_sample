@@ -2,17 +2,24 @@
 export TF_VAR_aws_XX_prd_access_key="XXX"
 export TF_VAR_aws_XX_prd_secret_key="XXX"
 export TF_VAR_aws_XX_prd_region="XXX"
-export TF_VAR_aws_XX_prd_role_arn="XXX"
-export TF_VAR_aws_XX_prd_bastion_key_name="/dev/null"
-export TF_VAR_aws_XX_prd_batch_key_name="/dev/null"
+export TF_VAR_aws_XX_prd_role_arn="arn:aws:iam::nnnn:role/xxxx"
+export TF_VAR_aws_XX_prd_key_name_bastion="xxx"
+export TF_VAR_aws_XX_prd_public_key_file_bastion="/dev/null"
+export TF_VAR_aws_XX_prd_key_name_batch="xxx"
+export TF_VAR_aws_XX_prd_public_key_file_batch="/dev/null"
+
 
 ## for DEVELOP environment
 export TF_VAR_aws_XX_dev_access_key="XXX"
 export TF_VAR_aws_XX_dev_secret_key="XXX"
 export TF_VAR_aws_XX_dev_region="XXX"
 export TF_VAR_aws_XX_dev_role_arn="xxx"
-export TF_VAR_aws_XX_dev_bastion_key_name="/dev/null"
-export TF_VAR_aws_XX_dev_batch_key_name="/dev/null"
+export TF_VAR_aws_XX_dev_key_name_bastion="xxxx"
+export TF_VAR_aws_XX_dev_public_key_file_bastion="/dev/null"
+export TF_VAR_aws_XX_dev_key_name_batch="xxxx"
+export TF_VAR_aws_XX_dev_public_key_file_batch="/dev/null"
+
+
 
 # for ALL environment
 export TF_VAR_ssh_office_cidr="nnn.nnn.nnn.nnn/nn"

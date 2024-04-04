@@ -13,10 +13,10 @@ terraform {
 }
 
 # create EIP for private subnet
-resource "aws_eip" EIP {
+resource "aws_eip" "EIP" {
   domain = "vpc"
   tags = {
-    Name = "${var.proj}-${var.env}-${var.name}-EIP"
+    Name      = "${var.proj}-${var.env}-${var.name}-EIP"
     terraform = true
   }
 }

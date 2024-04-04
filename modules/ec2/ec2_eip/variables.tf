@@ -12,6 +12,10 @@ variable "name" {
 }
 variable "key_name" {
   type        = string
+  description = "SSH public key name for created EC2."
+}
+variable "key_file" {
+  type        = string
   description = "SSH public key filepath for created EC2."
 }
 variable "az" {
